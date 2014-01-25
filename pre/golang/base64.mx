@@ -1,0 +1,17 @@
+base64
+
+example
+ Encode using standard base64
+code
+ data := "abc123!?$*&()'-=@~"
+ sEnc := b64.StdEncoding.EncodeToString([]byte(data))
+
+example
+ Decode standard base64
+code
+ sDec, _ := b64.StdEncoding.DecodeString(sEnc)
+
+example
+ Encode using URL-compatible base64
+code
+ uEnc := b64.URLEncoding.EncodeToString([]byte(data))

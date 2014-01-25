@@ -1,0 +1,6 @@
+cut
+
+example
+ To cut out the third field of text or stdoutput that is delimited by a #:
+code
+ cut -d# -f3

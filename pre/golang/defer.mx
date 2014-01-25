@@ -1,0 +1,13 @@
+defer
+
+example
+ Close a file at function exit
+code
+ file := openFile("filename")
+ if file == nil {
+     fmt.Println("this is bad")
+ }
+ defer closeFile(file)
+ // lots of operations here that might fail
+text
+ closeFile(file) is called as soon as we return

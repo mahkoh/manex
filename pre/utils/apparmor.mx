@@ -1,0 +1,33 @@
+apparmor
+
+example
+ To activate a profile:
+code
+ sudo aa-enforce usr.bin.firefox
+text
+ OR
+code
+ export _PROFILE_='usr.bin.firefox' sudo $(rm /etc/apparmor.d/disable/$_PROFILE_ ; cat /etc/apparmor.d/$_PROFILE_ | apparmor_parser -a )
+
+example
+ TO disable a profile:
+code
+ sudo aa-disable usr.bin.firefox
+text
+ OR
+code
+ export _PROFILE_='usr.bin.firefox' sudo $(ln -s /etc/apparmor.d/$_PROFILE_ /etc/apparmor.d/disable/ && apparmor_parser -R /etc/apparmor.d/$_PROFILE_)
+
+example
+ To list profiles loaded:
+code
+ sudo aa-status
+text
+ OR
+code
+ sudo apparmor_status
+
+example
+ List of profiles aviables:
+code
+ /etc/apparmor.d/

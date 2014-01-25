@@ -1,0 +1,16 @@
+split
+
+example
+ To split a large text file into smaller files of 1000 lines each:
+code
+ split file.txt -l 1000
+
+example
+ To split a large binary file into smaller files of 10M each:
+code
+ split file.txt -b 10M
+
+example
+ To consolidate split files into a single file:
+code
+ cat x* > file.txt

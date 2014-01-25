@@ -1,0 +1,62 @@
+channels
+
+example
+ A non-buffered channel of strings
+code
+ c := make(chan string)
+ go func() { c <- "test" }()
+ s := <-c
+
+example
+ A buffered channel
+code
+ c := make(chan string, 2)
+ c <- "a"
+ c <- "b"
+ s1 := <-c // "a"
+ s2 := <-c // "b"
+
+example
+ A deadlock
+code
+ c := make(chan int)
+ c <- 1
+ // oops, c not buffered
+
+example
+ Directed channels
+code
+ c := make(chan int)
+ var cIn <-chan int = c // read only
+ var cOt chan<- int = c // write only
+
+example
+ Synchronization with channels
+code
+ c := make(chan bool)
+ go func() {
+     time.Sleep(10 * time.Second)
+     c <- true
+ }()
+ <-c // Blocks until something is written to c
+
+example
+ Multiplexing
+code
+text
+ See `go select` examples
+
+example
+ Closing a channel
+code
+ c := make(chan int)
+ go func() {
+     c <- 1
+     c <- 2
+     close(c)
+ }()
+ for i := range c {
+     fmt.Println(i)
+ }
+text
+ Prints 1, 2 and exits

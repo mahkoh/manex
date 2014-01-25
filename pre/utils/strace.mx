@@ -1,0 +1,42 @@
+strace
+
+example
+ Basic stracing
+code
+ strace <command>
+
+example
+ save the trace to a file
+code
+ strace -o strace.out <other switches> <command>
+
+example
+ follow only the open() system call
+code
+ strace -e trace=open <command>
+
+example
+ follow all the system calls which open a file
+code
+ strace -e trace=file <command>
+
+example
+ follow all the system calls associated with process
+ management
+code
+ strace -e trace=process <command>
+
+example
+ follow child processes as they are created
+code
+ strace -f <command>
+
+example
+ count time, calls and errors for each system call
+code
+ strace -c <command>
+
+example
+ trace a running process (multiple PIDs can be specified)
+code
+ strace -p <pid>

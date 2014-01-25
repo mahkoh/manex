@@ -1,0 +1,14 @@
+fork
+
+example
+ fork and replace child with `ls`
+code
+ #include <unistd.h>
+ ...
+ pid_t id = fork();
+ if (id == 0) {
+     // child process
+     execlp("ls", "ls", (char *)NULL);
+ }
+ // parent process
+ // id contains child process id

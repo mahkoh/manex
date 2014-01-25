@@ -1,0 +1,18 @@
+dhclient
+
+example
+ To release the current IP address:
+code
+ sudo dhclient -r
+
+example
+ To obtain a new IP address:
+code
+ sudo dhclient
+text
+ Running the above in sequence is a common way of refreshing an IP.
+
+example
+ To obtain a new IP address for a specific interface:
+code
+ sudo dhclient eth0

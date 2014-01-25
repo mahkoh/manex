@@ -1,0 +1,37 @@
+gcc
+
+example
+ Compile a file
+code
+ gcc file.c
+
+example
+ Compile a file with a custom output
+code
+ gcc -o file file.c
+
+example
+ Debug symbols
+code
+ gcc -g
+
+example
+ Debug with all symbols.
+code
+ gcc -ggdb3
+
+example
+ Build for 64 bytes
+code
+ gcc -m64
+
+example
+ Include the directory {/usr/include/myPersonnal/lib/} to the list of path for #include <....>
+ With this option, no warning / error will be reported for the files in {/usr/include/myPersonnal/lib/}
+code
+ gcc -isystem /usr/include/myPersonnal/lib/
+
+example
+ Build a GUI for windows (Mingw) (Will disable the term/console)
+code
+ gcc -mwindows

@@ -1,0 +1,43 @@
+uname
+
+example
+ Print all system information
+code
+ uname -a
+ Linux system-hostname 3.2.0-4-amd64 #1 SMP Debian 3.2.32-1 x86_64 GNU/Linux
+
+example
+ Print the hostname
+code
+ uname -n
+ system-hostname
+
+example
+ Print the kernel release
+code
+ uname -r
+ 3.2.0-4-amd64
+
+example
+ Print the kernel version, with more specific information
+code
+ uname -v
+ #1 SMP Debian 3.2.32-1
+
+example
+ Print the hardware instruction set
+code
+ uname -m
+ x86_64
+
+example
+ Print the kernel name
+code
+ uname -s
+ Linux
+
+example
+ Print the operating system
+code
+ uname -o
+ GNU/Linux

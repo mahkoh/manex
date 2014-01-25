@@ -1,0 +1,32 @@
+crontab
+
+example
+ set a shell
+code
+ SHELL=/bin/bash
+
+example
+ crontab format
+code
+ * * * * *  command_to_execute
+ - - - - -
+ | | | | |
+ | | | | +- day of week (0 - 7) (where sunday is 0 and 7)
+ | | | +--- month (1 - 12)
+ | | +----- day (1 - 31)
+ | +------- hour (0 - 23)
+ +--------- minute (0 - 59)
+
+example
+ example entries
+ every 15 min
+code
+ */15 * * * * /home/user/command.sh
+text
+ every midnight
+code
+ 0 * * * * /home/user/command.sh
+text
+ every Saturday at 8:05 AM
+code
+ 5 8 * * 6 /home/user/command.sh

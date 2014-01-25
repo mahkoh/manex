@@ -1,0 +1,20 @@
+exec
+
+example
+ Find path of a program
+code
+ bin, err := exec.LookPath("ls")
+ if err != nil {
+     ...
+ }
+
+example
+ Exec program to replace current process
+code
+ bin, _ := exec.LookPath("ls")
+ args := []string{"ls", "-a", "-l"}
+ env := os.environ()
+ err := syscall.Exec(bin, args, env)
+ if err != nil {
+     // can't exec
+ }

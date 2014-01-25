@@ -1,0 +1,46 @@
+top
+
+example
+ Update every <interval> samples:
+code
+ top -i <interval>
+
+example
+ Set the delay between updates to <delay> seconds:
+code
+ top -s <delay>
+
+example
+ Set event counting to accumulative mode:
+code
+ top -a
+
+example
+ Set event counting to delta mode:
+code
+ top -d
+
+example
+ Set event counting to absolute mode:
+code
+ top -e
+
+example
+ Do not calculate statistics on shared libraries, also known as frameworks:
+code
+ top -F
+
+example
+ Calculate statistics on shared libraries, also known as frameworks (default):
+code
+ top -f
+
+example
+ Print command line usage information and exit:
+code
+ top -h
+
+example
+ Order the display by sorting on <key> in descending order
+code
+ top -o <key>

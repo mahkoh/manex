@@ -1,0 +1,25 @@
+at
+
+example
+code
+ at {time}
+ {command 0}
+ {command 1}
+ Ctrl-d
+text
+ {time} can be either
+code
+ now | midnight | noon | teatime (4pm)
+ HH:MM
+ now + N {minutes | hours | days | weeks}
+ MM/DD/YY
+
+example
+ To list pending jobs
+code
+ atq
+
+example
+ To remove a job (use id from atq)
+code
+ atrm {id}

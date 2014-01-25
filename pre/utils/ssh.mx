@@ -1,0 +1,35 @@
+ssh
+
+example
+ To ssh via pem file (which normally needs 0600 permissions):
+code
+ ssh -i /path/to/file.pem user@example.com
+
+example
+ To connect on an non-standard port:
+code
+ ssh -p 2222 user@example.com
+
+example
+ To execute a command on a remote server:
+code
+ ssh -t user@example.com 'the-remote-command'
+
+example
+ To tunnel an x session over SSH:
+code
+ ssh -X user@example.com
+ 
+example
+ To launch a specific x application over SSH:
+code
+ ssh -X -t user@example.com 'chromium-browser'
+
+example
+ To create a SOCKS proxy on localhost and port 9999
+code
+ ssh -D 9999 user@example.com
+
+example
+ For more information, see:
+ http://unix.stackexchange.com/q/12755/44856

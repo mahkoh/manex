@@ -1,0 +1,6 @@
+df
+
+example
+ Printout disk free space in a human readable format
+code
+ df -h

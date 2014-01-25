@@ -1,0 +1,16 @@
+mount
+
+example
+ To mount / partition as read-write in repair mode:
+code
+ mount -o remount,rw /
+
+example
+ To mount Usb disk as user writable:
+code
+ mount -o uid=username,gid=usergroup /dev/sdx /mnt/xxx
+
+example
+ To mount a remote NFS directory
+code
+ mount -t nfs example.com:/remote/example/dir /local/example/dir

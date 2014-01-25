@@ -1,0 +1,16 @@
+head
+
+example
+ To show the first 10 lines of file
+code
+ head file
+
+example
+ To show the first N lines of file
+code
+ head -n N file
+
+example
+ To show the first N bytes of file
+code
+ head -c N file

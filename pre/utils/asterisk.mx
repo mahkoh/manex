@@ -1,0 +1,35 @@
+asterisk
+
+example
+ To connect to a runningcode
+ asterisk session:
+code
+ asterisk -rvvv
+
+example
+ To issue a command tocode
+ asterisk from the shell:
+code
+ asterisk -rx "<command>"
+
+example
+ To originate an echo call from a SIP trunk on ancode
+ asterisk server, to a specified number:
+code
+ asterisk -rx "channel originate SIP/<trunk>/<number> application echo"
+
+example
+ To print out the details of SIP accounts:
+code
+ asterisk -rx "sip show peers"
+
+example
+ To print out the passwords of SIP accounts:
+code
+ asterisk -rx "sip show users"
+
+example
+ To print out the current active channels:
+code
+ asterisk -rx "core show channels"
+

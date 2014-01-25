@@ -1,0 +1,35 @@
+openssl
+
+example
+ To create a 2048-bit private key:
+code
+ openssl genrsa -out server.key 2048
+
+example
+ To create the Certificate Signing Request (CSR):
+code
+ openssl req -new -key server.key -out server.csr
+
+example
+ To sign a certificate using a private key and CSR:
+code
+ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+text
+ (The above commands may be run in sequence to generate a self-signed SSL certificate.)
+
+example
+ To show certificate information for a certificate signing request
+code
+ openssl req -text -noout -in server.csr
+
+example
+ To show certificate information for generated certificate
+code
+ openssl x509 -text -noout -in server.crt 
+
+example
+ To view certificate expiration:
+code
+ echo | openssl s_client -connect <hostname>:443 2> /dev/null | \
+ awk '/-----BEGIN/,/END CERTIFICATE-----/' | \
+ openssl x509 -noout -enddate

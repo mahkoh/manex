@@ -1,0 +1,21 @@
+apt-cache
+
+example
+ To search for apt packages:
+code
+ apt-cache search "whatever"
+
+example
+ To display package records for the named package(s):
+code
+ apt-cache show pkg(s)
+
+example
+ To display reverse dependencies of a package
+code
+ apt-cache rdepends package_name
+
+example
+ To display package versions, reverse dependencies and forward dependencies of a package
+code
+ apt-cache showpkg package_name

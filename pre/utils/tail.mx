@@ -1,0 +1,26 @@
+tail
+
+example
+ To show the last 10 lines of file
+code
+ tail file
+
+example
+ To show the last N lines of file
+code
+ tail -n N file
+
+example
+ To show the last lines of file starting with the Nth
+code
+ tail -n +N file
+
+example
+ To show the last N bytes of file
+code
+ tail -c N file
+
+example
+ To show the last 10 lines of file and to wait for file to grow
+code
+ tail -f file

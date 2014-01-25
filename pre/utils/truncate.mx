@@ -1,0 +1,18 @@
+truncate
+
+example
+ To clear the contents from a file:
+code
+ truncate -s 0 file.txt
+
+example
+ To truncate a file to 100 bytes:
+code
+ truncate -s 100 file.txt
+
+example
+ To truncate a file to 100 KB:
+code
+ truncate -s 100K file.txt
+text
+ (M, G, T, P, E, Z, and Y may be used in place of "K" as required.)

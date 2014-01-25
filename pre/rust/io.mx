@@ -1,0 +1,9 @@
+io
+
+example
+ Read a line from stdin and write it back
+code
+ let path = Path::new("hw.txt");
+ let mut hw_file = File::open(&path);
+ let data = from_utf8_owned(hw_file.read_to_end());
+ println!("{:s}", data);

@@ -1,0 +1,16 @@
+terminal
+
+example
+ get terminal width
+code
+ #include <sys/ioctl.h>
+ struct winsize w;
+ ioctl(1, TIOCGWINSZ, &w);
+ int width = w.ws_col;
+
+example
+ check if stdout points to a terminal
+code
+ #include <unistd.h>
+ int is_term = isatty(1);
+

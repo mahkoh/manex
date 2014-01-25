@@ -1,0 +1,8 @@
+epoch
+
+example
+ Get epoch
+code
+ now := time.Now()
+ secs := new.Unix()
+ nanos := now.UnixNano()

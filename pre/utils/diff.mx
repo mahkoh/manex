@@ -1,0 +1,41 @@
+diff
+
+example
+ To view the differences between two files:
+code
+ diff -u version1 version2
+ 
+example
+ To view the differences between two directories:
+code
+ diff -ur folder1/ folder2/
+ 
+example
+ To ignore the white spaces:
+code
+ diff -ub version1 version2
+ 
+example
+ To ignore the blank lines:
+code
+ diff -uB version1 version2
+ 
+example
+ To ignore the differences between uppercase and lowercase:
+code
+ diff -ui version1 version2
+
+example
+ To report whether the files differ:
+code
+ diff -q version1 version2
+
+example
+ To report whether the files are identical:
+code
+ diff -s version1 version2
+ 
+example
+ To diff the output of two commands or scripts:
+code
+ diff <(command1) <(command2)

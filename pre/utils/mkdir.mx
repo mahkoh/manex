@@ -1,0 +1,17 @@
+mkdir
+
+example
+ Create a directory and all its parents
+code
+ mkdir -p foo/bar/baz
+
+example
+ Create foo/bar and foo/baz directories
+code
+ mkdir -p foo/{bar,baz}
+
+example
+ Create the foo/bar, foo/baz, foo/baz/zip and foo/baz/zap directories
+code
+ mkdir -p foo/{bar,baz/{zip,zap}}
+

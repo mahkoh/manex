@@ -1,0 +1,6 @@
+exit
+
+example
+ Exit with code 1
+code
+ os.Exit(1)

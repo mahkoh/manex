@@ -1,0 +1,21 @@
+ls
+
+example
+ Displays everything in the target directory
+code
+ ls path/to/the/target/directory
+
+example
+ Displays everything including hidden files
+code
+ ls -a
+
+example
+ Displays all files, along with the size (with unit suffixes) and timestamp
+code
+ ls -lh 
+
+example
+ Display files, sorted by size
+code
+ ls -S

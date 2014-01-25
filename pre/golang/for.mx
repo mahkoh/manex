@@ -1,0 +1,22 @@
+for
+
+example
+ infinite loop
+code
+ for {
+     // ...
+ }
+
+example
+ while loop
+code
+ for condition {
+     // ...
+ }
+
+example
+ for loop
+code
+ for i := 0; i < 10; i++ {
+     // ...
+ }

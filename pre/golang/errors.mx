@@ -1,0 +1,12 @@
+errors
+
+example
+ create a new error
+code
+ func f(i int) (int, error) {
+     if (i == 0) {
+         return -1, errors.New("can't handle this")
+     }
+     return 42/i, nil
+ }
+

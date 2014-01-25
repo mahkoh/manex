@@ -1,0 +1,57 @@
+markdown
+
+example
+ headers
+code
+ h1 header
+ =========
+ h2 header
+ ---------
+
+example
+ blockquotes
+code
+ > first level and paragraph
+ >> second level and first paragraph
+ >
+ > first level and second paragraph
+
+example
+ lists
+ unordered - use *, +, or -
+code
+ * Red
+ * Green
+ * Blue
+text
+ ordered
+code
+ 1. First
+ 2. Second
+ 3. Third
+
+example
+ code - use 4 spaces/1 tab
+code
+ regular text
+     code code code
+text
+ or use the `printf()` function
+
+example
+ hr's - three or more of the following
+code
+ ***
+ ---
+ ___
+
+example
+ links
+code
+ This is [an example](http://example.com "Title") inline link.
+
+example
+ emphasis
+code
+ *em* _em_
+ **strong** __strong__

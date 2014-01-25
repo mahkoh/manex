@@ -1,0 +1,14 @@
+exec
+
+example
+ Replace current process with `ls -l -h`
+code
+ #include <unistd.h>
+ ...
+ execlp("ls", "ls", "-l", "-h", (char *)NULL);
+
+example
+ Same as above but with an array
+code
+ char * const arr[] = { "ls", "-l", "-h", (char *)NULL };
+ execvp("ls", arr);

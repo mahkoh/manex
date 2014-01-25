@@ -1,0 +1,6 @@
+sockstat
+
+example
+ To view which users/processes are listening to which ports:
+code
+ sudo sockstat -l

@@ -1,0 +1,41 @@
+tar
+
+example
+ To extract an uncompressed archive:
+code
+ tar -xvf /path/to/foo.tar
+
+example
+ To create an uncompressed archive:
+code
+ tar -cvf /path/to/foo.tar /path/to/foo/
+
+example
+ To extract a .gz archive:
+code
+ tar -xzvf /path/to/foo.tgz
+
+example
+ To create a .gz archive:
+code
+ tar -czvf /path/to/foo.tgz /path/to/foo/
+
+example
+ To list the content of an .gz archive:
+code
+ tar -ztvf /path/to/foo.tgz
+
+example
+ To extract a .bz2 archive:
+code
+ tar -xjvf /path/to/foo.tgz
+
+example
+ To create a .bz2 archive:
+code
+ tar -cjvf /path/to/foo.tgz /path/to/foo/
+
+example
+ To list the content of an .bz2 archive:
+code
+ tar -jtvf /path/to/foo.tgz

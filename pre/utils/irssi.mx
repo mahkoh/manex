@@ -1,0 +1,46 @@
+irssi
+
+example
+ To connect to an IRC server
+code
+ /connect <server domain name>
+
+example
+ To join a channel
+code
+ /join #<channel name>
+
+example
+ To set a nickname
+code
+ /nick <my nickname>
+
+example
+ To send a private message to a user
+code
+ /msg <nickname>
+
+example
+ To close the current channel window
+code
+ /wc
+
+example
+ To switch between channel windows
+code
+ ALT+<number>, eg. ALT+1, ALT+2
+
+example
+ To list the nicknames within a channel
+code
+ /names
+
+example
+ To change the topic
+code
+ /topic <description>
+
+example
+ To quit irssi
+code
+ /exit

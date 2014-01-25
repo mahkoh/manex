@@ -1,0 +1,49 @@
+ym
+
+example
+ To install the latest version of a package:
+code
+ yum install <package name>
+
+example
+ To perform a local install:
+code
+ yum localinstall <package name>
+
+example
+ To remove a package:
+code
+ yum remove <package name>
+
+example
+ To search for a package:
+code
+ yum search <package name>
+
+example
+ To find what package installs a program:
+code
+ yum whatprovides </path/to/program>
+
+example
+ To find the dependencies of a package:
+code
+ yum deplist <package name>
+
+example
+ To find information about a package:
+code
+ yum info <package name>
+
+example
+ List currently enabled repositories:
+code
+ yum repolist
+
+example
+ To download the source RPM for a package:
+code
+ yumdownloader --source <package name>
+
+example
+ (You have to install yumdownloader first, which is installed by the yum-utils package)

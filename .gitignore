@@ -1,0 +1,5 @@
+config.mk
+docs
+gen
+manex
+*.swp

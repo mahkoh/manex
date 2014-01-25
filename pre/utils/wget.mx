@@ -1,0 +1,41 @@
+wget
+
+example
+ To download a single file
+code
+ wget http://path.to.the/file
+
+example
+ To download a file and change its name
+code
+ wget http://path.to.the/file -o newname
+
+example
+ To continue an aborted downloaded
+code
+ wget -c http://path.to.the/file
+
+example
+ To download multiples files with multiple URLs
+code
+ wget URL1 URL2
+
+example
+ To parse a file that contains a list of URLs to fetch each one
+code
+ wget -i url_list.txt
+
+example
+ To download files according to a pattern
+code
+ wget http://www.myserver.com/files-{1..15}.tar.bz2
+
+example
+ To download all the files in a directory with a specific extension if directory indexing is enabled
+code
+ wget -r -l1 -A.extension http://myserver.com/directory
+
+example
+ Allows you to download just the headers of responses (-S --spider) and display them on Stdout (-O -).
+code
+ wget -S --spider -O - http://google.com

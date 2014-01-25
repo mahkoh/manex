@@ -1,0 +1,20 @@
+bash
+
+example
+ To implement a for loop:
+code
+ for file in `ls .`;
+ do 
+     echo $file found;
+ done
+
+example
+ To implement a case command:
+code
+ case "$1"
+ in
+     0) echo "zero found";;
+     1) echo "one found";;
+     2) echo "two found";;
+     3*) echo "something beginning with 3 found";;
+ esac

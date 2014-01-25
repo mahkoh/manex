@@ -1,0 +1,40 @@
+lsof
+
+example
+ List all IPv4 network files
+code
+ sudo lsof -i4
+
+example
+ List all IPv6 network files
+code
+ sudo lsof -i6
+
+example
+ To find listening ports:
+code
+ lsof -Pnl +M -i4
+
+example
+ To find which program is using the port 80:
+code
+ lsof -i TCP:80
+
+example
+ List all processes accessing a particular file/directory
+code
+ lsof </path/to/file>
+
+example
+ List all files open for a particular user
+code
+ lsof -u <username>
+
+example
+ List all files/network connections a given process is using
+code
+ lsof -c <command-name>
+
+example
+ See this primer: http://www.danielmiessler.com/study/lsof/
+ for a number of other useful lsof tips

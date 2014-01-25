@@ -1,0 +1,41 @@
+mysqldump
+
+example
+ To dump a database to a file (Note that your password will appear in your command history!):
+code
+ mysqldump -uusername -ppassword the-database > db.sql
+
+example
+ To dump a database to a file:
+code
+ mysqldump -uusername -p the-database > db.sql
+
+example
+ To dump a database to a .tgz file (Note that your password will appear in your command history!):
+code
+ mysqldump -uusername -ppassword the-database | gzip -9 > db.sql
+
+example
+ To dump a database to a .tgz file:
+code
+ mysqldump -uusername -p the-database | gzip -9 > db.sql
+
+example
+ To dump all databases to a file (Note that your password will appear in your command history!):
+code
+ mysqldump -uusername -ppassword --all-databases > all-databases.sql
+
+example
+ To dump all databases to a file:
+code
+ mysqldump -uusername -p --all-databases > all-databases.sql
+
+example
+ To export the database structure only:
+code
+ mysqldump --no-data -uusername -p the-database > dump_file
+
+example
+ To export the database data only:
+code
+ mysqldump --no-create-info -uusername -p the-database > dump_file

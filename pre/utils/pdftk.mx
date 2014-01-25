@@ -1,0 +1,17 @@
+pdftk
+
+example
+ Concatenate all pdf files into one:
+code
+ pdftk *.pdf cat output all.pdf
+
+example
+ Concatenate specific pdf files into one:
+code
+ pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+
+example
+ Concatenate pages 1 to 5 of first.pdf with page 3 of second.pdf
+code
+ pdftk A=fist.pdf B=second.pdf cat A1-5 B3 output new.pdf
+

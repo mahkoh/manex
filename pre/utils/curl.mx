@@ -1,0 +1,61 @@
+curl
+
+example
+ Download a single file
+code
+ curl http://path.to.the/file
+
+example
+ Download a file and specify a new filename
+code
+ curl http://example.com/file.zip -o new_file.zip
+
+example
+ Download multiple files
+code
+ curl -O URLOfFirstFile -O URLOfSecondFile
+
+example
+ Download all sequentially numbered files (1-24)
+code
+ curl http://example.com/pic[1-24].jpg
+
+example
+ Download a file and pass HTTP Authentication
+code
+ curl -u username:password URL 
+
+example
+ Download a file with a Proxy
+code
+ curl -x proxysever.server.com:PORT http://addressiwantto.access
+
+example
+ Download a file from FTP
+code
+ curl -u username:password -O ftp://example.com/pub/file.zip
+
+example
+ Get an FTP directory listing
+code
+ curl ftp://username:password@example.com
+
+example
+ Resume a previously failed download
+code
+ curl -C - -o partial_file.zip http://example.com/file.zip
+
+example
+ Fetch only the HTTP headers from a response
+code
+ curl -I http://example.com
+
+example
+ Fetch your external IP and network info as JSON
+code
+ curl http://ifconfig.me/all/json
+
+example
+ Limit the rate of a download
+code
+ curl --limit-rate 1000B -O http://path.to.the/file

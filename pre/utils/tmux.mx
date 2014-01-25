@@ -1,0 +1,66 @@
+tmux
+
+example
+ Start tmux:
+code
+ tmux
+
+example
+ Detach from tmux:
+code
+ Ctrl-b d
+
+example
+ Restore tmux session:
+code
+ tmux attach
+
+example
+ Display session:
+code
+ tmux ls
+
+example
+ Start a shared session:
+code
+ tmux -S /tmp/your_shared_session
+ chmod 777 /tmp/your_shared_session
+
+example
+ Help screen (Q to quit):
+code
+ Ctrl-b ?
+
+example
+ Scroll in window:
+code
+ Ctrl-b PageUp/PageDown
+
+example
+ Create window:
+code
+ Ctrl-b c
+
+example
+ Destroy window:
+code
+ Ctrl-b x
+
+example
+ Switch between windows:
+code
+ Ctrl-b [0-9]
+text
+ or
+code
+ Ctrl-b Arrows
+
+example
+ Split windows horizontally:
+code
+ Ctrl-b %
+
+example
+ Split windows vertically:
+code
+ Ctrl-b "

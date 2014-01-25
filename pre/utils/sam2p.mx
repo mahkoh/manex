@@ -1,0 +1,6 @@
+sam2p
+
+example
+ Concatenate all pdf files into one:
+code
+ sam2p *.pdf out.pdf

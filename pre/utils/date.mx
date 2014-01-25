@@ -1,0 +1,6 @@
+date
+
+example
+ Printout date in format suitable for affixing to file names
+code
+ date +"%Y%m%d_%H%M%S"

@@ -1,0 +1,21 @@
+cmd-args
+
+example
+ Print all command line args including program name
+code
+ fmt.Println(os.Args)
+
+example
+ Parse command line flag --test
+code
+ testPtr := flag.Int("test", "44", "an int flag (default: 44)")
+ flag.Parse()
+ fmt.Println(*testPtr)
+
+example
+ Parse command line flag --test without a new varible
+code
+ var test int
+ flag.IntVar(&test, "test", "44", "an int flag (default: 44)")
+ flag.Parse()
+ fmt.Println(test)

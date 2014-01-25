@@ -1,0 +1,12 @@
+file
+
+example
+ print all filename is a directory
+code
+ #include <dirent.h>
+ DIR *dir = opendir(path);
+ struct dirent *ent;
+ while ((ent = readdir(dir))) {
+     if (ent->d_name[0] != '.')
+         printf("%s\n", ent->d_name);
+ }

@@ -1,0 +1,8 @@
+notify-send
+
+example
+ To send a desktop notification via dbus:
+code
+ notify-send -i 'icon-file/name' -a 'application_name' 'summary' 'body of message'
+text
+ The -i and -a flags can be omitted if unneeded.

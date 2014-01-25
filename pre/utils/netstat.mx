@@ -1,0 +1,47 @@
+netstat
+
+example
+ WARNING ! netstat is deprecated. Look below.
+
+example
+ To view which users/processes are listening to which ports:
+code
+ sudo netstat -lnptu
+
+example
+ To view routing table (use -n flag to disable DNS lookups):
+code
+ netstat -r
+
+example
+ Which process is listening to port <port>
+code
+ netstat -pln | grep <port> | awk '{print $NF}'
+text
+ Example output: 1507/python
+
+example
+ Fast display of ipv4 tcp listening programs
+code
+ sudo netstat -vtlnp --listening -4
+
+example
+ WARNING ! netstat is deprecated.
+ Replace it by:
+code
+ ss
+
+example
+ For netstat-r
+code
+ ip route
+
+example
+ For netstat -i
+code
+ ip -s link
+
+example
+ For netstat-g
+code
+ ip maddr

@@ -1,0 +1,11 @@
+stdout
+
+example
+ To redirect stderr to stdout:
+code
+ some-command 2>&1
+
+example
+ To redirect stderr to a file
+code
+ some-command 2> errors.txt

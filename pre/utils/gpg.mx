@@ -1,0 +1,169 @@
+gpg
+
+example
+ Create a key
+code
+ gpg --gen-key
+
+example
+ Show keys. To list a summary of all keys
+code
+ gpg --list-keys
+text
+ To show your public key
+code
+ gpg --armor --export
+text
+ To show the fingerprint for a key
+code
+ gpg --fingerprint KEY_ID
+text
+ Search for keys
+code
+ gpg --search-keys 'user@emailaddress.com'
+
+example
+ To Encrypt a File
+code
+ gpg --encrypt --recipient 'user@emailaddress.com' example.txt
+
+example
+ To Decrypt a File
+code
+ gpg --output example.txt --decrypt example.txt.gpg
+
+example
+ Export keys
+code
+ gpg --output ~/public_key.txt --armor --export KEY_ID
+ gpg --output ~/private_key.txt --armor --export-secret-key KEY_ID
+text
+ Where KEY_ID is the 8 character GPG key ID.
+ Store these files to a safe location, such as a USB drive, then
+ remove the private key file.
+code
+ shred -zu ~/private_key.txt
+
+example
+ Import keys. Retrieve the key files which you previously exported.
+code
+ gpg --import ~/public_key.txt
+ gpg --allow-secret-key-import --import ~/private_key.txt
+text
+ Then delete the private key file.
+code
+ shred -zu ~/private_key.txt
+
+example
+ Revoke a key. Create a revocation certificate.
+code
+ gpg --output ~/revoke.asc --gen-revoke KEY_ID
+text
+  Where KEY_ID is the 8 character GPG key ID. 
+  After creating the certificate import it.
+code
+  gpg --import ~/revoke.asc
+text
+  Then ensure that key servers know about the revokation.
+code
+  gpg --send-keys KEY_ID
+
+example
+ Signing and Verifying files.
+ If you're uploading files to launchpad you may also want to include
+ a GPG signature file.
+code
+ gpg -ba filename
+text
+ or if you need to specify a particular key:
+code
+ gpg --default-key <key ID> -ba filename
+text
+ This then produces a file with a .asc extension which can be uploaded.
+ If you need to set the default key more permanently then edit the
+ file ~/.gnupg/gpg.conf and set the default-key parameter.
+ To verify a downloaded file using its signature file.
+code
+  gpg --verify filename.asc
+
+example
+ Signing Public Keys
+ Import the public key or retrieve it from a server.
+code
+ gpg --keyserver <keyserver> --recv-keys <Key_ID>
+text
+  Check its fingerprint against any previously stated value.
+code
+  gpg --fingerprint <Key_ID>
+text
+  Sign the key.
+code
+  gpg --sign-key <Key_ID>
+text
+  Upload the signed key to a server.
+code
+    gpg --keyserver <keyserver> --send-key <Key_ID>
+
+example
+ Change the email address associated with a GPG key
+code
+  gpg --edit-key <key ID>
+  adduid
+text
+  Enter the new name and email address. You can then list the addresses with:
+code
+    list
+text
+  If you want to delete a previous email address first select it:
+code
+    uid <list number>
+text
+  Then delete it with:
+code
+    deluid
+text
+  To finish type:
+code
+    save
+text
+  Publish the key to a server:
+code
+    gpg --send-keys <key ID>
+
+example
+ Creating Subkeys.
+ Subkeys can be useful if you don't wish to have your main GPG key
+ installed on multiple machines. In this way you can keep your
+ master key safe and have subkeys with expiry periods or which may be
+ separately revoked installed on various machines. This avoids
+ generating entirely separate keys and so breaking any web of trust
+ which has been established.
+code
+  gpg --edit-key <key ID>
+text
+  At the prompt type:
+code
+  addkey
+text
+  Choose RSA (sign only), 4096 bits and select an expiry period.
+  Entropy will be gathered.
+  At the prompt type:
+code
+  save
+text
+  You can also repeat the procedure, but selecting RSA (encrypt only).
+  To remove the master key, leaving only the subkey/s in place:
+code
+  gpg --export-secret-subkeys <subkey ID> > subkeys
+  gpg --export <key ID> > pubkeys
+  gpg --delete-secret-key <key ID>
+text
+  Import the keys back.
+code
+  gpg --import pubkeys subkeys
+text
+  Verify the import.
+code
+  gpg -K
+text
+  Should show sec# instead of just sec.

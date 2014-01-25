@@ -1,0 +1,26 @@
+apt-get
+
+example
+ To fetch package list
+code
+ apt-get update
+
+example
+ To download and install updates without installing new package.
+code
+ apt-get update
+
+example
+ To download and install the updates AND install new necessary packages
+code
+ apt-get dist-upgrade
+
+example
+ Full command:
+code
+ apt-get update && apt-get dist-upgrade
+
+example
+ To install a new package(s)
+code
+ apt-get install package(s)

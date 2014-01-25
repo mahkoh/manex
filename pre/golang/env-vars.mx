@@ -1,0 +1,15 @@
+environment variables
+
+example
+ Get and Set env vars
+code
+ os.Setenv("FOO", "1")
+ bar := os.Getenv("BAR")
+
+example
+ Iterate over env vars
+code
+ for _, e := range os.Environ() {
+     pair := strings.Split(e, "=")
+     fmt.Println(pair)
+ }

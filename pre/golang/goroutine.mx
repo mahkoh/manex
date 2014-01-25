@@ -1,0 +1,13 @@
+goroutine
+
+example
+ Execute f("test") in goroutine
+code
+ go f("test")
+
+example
+ Execute closure in goroutine
+code
+ go func(i int) {
+     // ...
+ }(11)

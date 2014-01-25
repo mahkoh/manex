@@ -1,0 +1,21 @@
+chown
+
+example
+ Change file owner
+code
+ chown user file
+
+example
+ Change file owner and group
+code
+ chown user:group file
+
+example
+ Change owner recursively
+code
+ chown -R user directory
+
+example
+ Change ownership to match another file
+code
+ chown --reference=/path/to/ref_file file

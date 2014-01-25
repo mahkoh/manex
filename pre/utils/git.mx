@@ -1,0 +1,73 @@
+git
+
+example
+ To set your identify:
+code
+ git config --global user.name "John Doe"
+ git config --global user.email johndoe@example.com
+
+example
+ To set your editor:
+code
+ git config --global core.editor emacs
+
+example
+ To enable color:
+code
+ git config --global color.ui true
+
+example
+ To stage all changes for commit:
+code
+ git add --all
+
+example
+ To commit staged changes
+code
+ git commit -m "Your commit message"
+
+example
+ To edit previous commit message
+code
+ git commit --amend
+
+example
+ To push to the tracked master branch:
+code
+ git push origin master
+
+example
+ To push to a specified repository:
+code
+ git push git@github.com:username/project.git
+
+example
+ To delete the branch "branch_name"
+code
+ git branch -D branch_name
+
+example
+ To see who commited which line in a file
+code
+ git blame filename
+
+example
+ To sync a fork with the master repo:
+code
+ git remote add upstream git@github.com:name/repo.git    # Set a new repo
+ git remote -v                                           # Confirm new remote repo
+ git fetch upstream                                      # Get branches
+ git branch -va                                          # List local - remote branches
+ git checkout master                                     # Checkout local master branch
+ git checkout -b new_branch                              # Create and checkout a new branch
+ git merge upstream/master                               # Merge remote into local repo
+ git show 83fb499                                        # Show what a commit did.
+ git show 83fb499:path/fo/file.ext                       # Shows the file as it appeared at 83fb499.
+ git diff branch_1 branch_2                              # Check difference between branches
+ git log                                                 # Show all the commits
+ git status                                              # Show the changes from last commit
+
+example
+ To add all filse which aren't explicity ignored in .gitignore
+code
+ git add .

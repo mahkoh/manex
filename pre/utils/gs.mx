@@ -1,0 +1,6 @@
+gs
+
+example
+ To reduce the size of a pdf file:
+code
+ gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=output.pdf input.pdf

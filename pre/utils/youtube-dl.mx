@@ -1,0 +1,35 @@
+youtube-dl
+
+example
+ To download a video in 720p MP4:
+code
+ youtube-dl -f 22 example.com/watch?v=id
+
+example
+ To download a video in 720p MP4 or WebM or FLV:
+code
+ youtube-dl -f 22/45/120
+
+example
+ To list all available formats of a video:
+code
+ youtube-dl -F example.com/watch?v=id
+
+example
+ To download a video to /$uploader/$date/$title.$ext:
+code
+ youtube-dl -o '%(uploader)s/%(date)s/%(title)s.%(ext)s' example.com/watch?v=id
+
+example
+ To download a video playlist starting from a certain video:
+code
+ youtube-dl --playlist-start 5 example.com/watch?v=id&list=listid
+
+example
+ To simulate a download with youtube-dl:
+code
+ youtube-dl -s example.com/watch?v=id
+
+example
+ For all video formats see
+ http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs

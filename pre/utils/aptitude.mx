@@ -1,0 +1,27 @@
+aptitude
+
+example
+ To search for packages:
+code
+ aptitude search "whatever"
+
+example
+ To display package records for the named package(s):
+code
+ aptitude show pkg(s)
+
+example
+ To install a package:
+code
+ aptitude install package
+
+example
+ To remove a package:
+code
+ aptitude remove package
+
+example
+ To remove unnecessary package:
+code
+ aptitude autoclean
+ 

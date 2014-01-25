@@ -1,0 +1,6 @@
+ln
+
+example
+ To create a symlink:
+code
+ ln -s path/to/the/target/directory name-of-symlink

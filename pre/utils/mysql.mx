@@ -1,0 +1,26 @@
+mysql
+
+example
+ To connect to a database
+code
+ mysql -h localhost -u root -p
+
+example
+ To backup all databases
+code
+ mysqldump --all-databases --all-routines -u root -p > ~/fulldump.sql
+
+example
+ To restore all databases
+code
+ mysql -u root -p  < ~/fulldump.sqlcode
+
+example
+ To create a database in utf8 charset
+code
+ CREATE DATABASE owa CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+example
+ To add a user and give rights on the given database
+code
+ GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'IDENTIFIED BY 'password' WITH GRANT OPTION;

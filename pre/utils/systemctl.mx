@@ -1,0 +1,62 @@
+systemctl
+
+example
+ List all loaded/active units
+code
+ systemctl list-units
+
+example
+ Check the status of a service
+code
+ systemctl status foo.service
+
+example
+ Start a service
+code
+ systemctl start foo.service
+
+example
+ Restart a service
+code
+ systemctl restart foo.service
+
+example
+ Stop a service
+code
+ systemctl stop foo.service
+
+example
+ Reload a service's configuration
+code
+ systemctl reload foo.service
+
+example
+ Enable a service to startup on boot
+code
+ systemctl enable foo.service
+
+example
+ Disable a service to startup on boot
+code
+ systemctl disable foo.service
+
+example
+ List the dependencies of a service
+ when no service name is specified, lists the dependencies of default.target
+code
+ systemctl list-dependencies foo.service 
+
+example
+ List currently loaded targets
+code
+ systemctl list-units --type=target
+
+example
+ Change current target
+code
+ systemctl isolate foo.target
+
+example
+ Change default target
+code
+ systemctl enable foo.target

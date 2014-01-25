@@ -1,0 +1,52 @@
+ncot
+
+example
+ Connect mode (ncat is client) | default port is 31337
+code
+ ncat <host> [<port>]
+
+example
+ Listen mode (ncat is server) | default port is 31337
+code
+ ncat -l [<host>] [<port>]
+
+example
+ Transfer file (closes after one transfer)
+code
+ ncat -l [<host>] [<port>] < file
+
+example
+ Transfer file (stays open for multiple transfers)
+code
+ ncat -l --keep-open [<host>] [<port>] < file
+
+example
+ Receive file
+code
+ ncat [<host>] [<port>] > filecode
+
+example
+ Brokering | allows for multiple clients to connect
+code
+ ncat -l --broker [<host>] [<port>]
+
+example
+ Listen with SSL | many options, use ncat --help for full list
+code
+ ncat -l --ssl [<host>] [<port>]
+
+example
+ Access control
+code
+ ncat -l --allow <ip>
+ ncat -l --deny <ip>
+
+example
+ Proxying
+code
+ ncat --proxy <proxyhost>[:<proxyport>] --proxy-type {http | socks4} <host>[<port>]
+
+example
+ Chat server | can use brokering for multi-user chat
+code
+ ncat -l --chat [<host>] [<port>]

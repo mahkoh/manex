@@ -1,0 +1,21 @@
+sort
+
+example
+ To sort a file:
+code
+ sort file
+
+example
+ To sort a file by keeping only unique:
+code
+ sort -u file
+
+example
+ To sort a file and reverse the result:
+code
+ sort -r file
+
+example
+ To sort a file randomly:
+code
+ sort -R file

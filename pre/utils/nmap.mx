@@ -1,0 +1,60 @@
+nmap
+
+example
+ Single target scan:
+code
+ nmap [target]
+
+example
+ Scan from a list of targets:
+code
+ nmap -iL [list.txt]
+
+example
+ iPv6:
+code
+ nmap -6 [target]
+
+example
+ OS detection:
+code
+ nmap -O [target]
+
+example
+ Save output to text file:
+code
+ nmap -oN [output.txt] [target]
+
+example
+ Save output to xml file:
+code
+ nmap -oX [output.xml] [target]
+
+example
+ Scan a specific port:
+code
+ nmap -source-port [port] [target]
+
+example
+ Do an aggressive scan:
+code
+ nmap -A [target]
+
+example
+ Traceroute:
+code
+ nmap -traceroute [target]
+
+example
+code
+ Ping scan only: -sP
+ Don't ping:     -PN
+ TCP SYN ping:   -PS
+ TCP ACK ping:   -PA
+ UDP ping:       -PU
+ ARP ping:       -PR
+
+example
+ Example: Ping scan all machines on a class C network
+code
+ nmap -sP 192.168.0.0/24

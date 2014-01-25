@@ -1,0 +1,26 @@
+sed
+
+example
+ To replace all occurrences of "day" with "night" and write to stdout:
+code
+ sed 's/day/night/g' file.txt
+
+example
+ To replace all occurrences of "day" with "night" within file.txt:
+code
+ sed -i 's/day/night/g' file.txt
+
+example
+ To replace all occurrences of "day" with "night" on stdin:
+code
+ echo 'It is daytime' | sed 's/day/night/g'
+
+example
+ To remove leading spaces
+code
+ sed -i -r 's/^\s+//g' file.txt
+
+example
+ Remove empty lines and print results to stdout:
+code
+ sed '/^$/d' file.txt

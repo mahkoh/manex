@@ -1,0 +1,11 @@
+rm
+
+example
+ Remove files and subdirs
+code
+ rm -rf path/to/the/target/
+
+example
+ Ignore non existent files 
+code
+ rm -f path/to/the/target

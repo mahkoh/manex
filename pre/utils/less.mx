@@ -1,0 +1,6 @@
+less
+
+example
+ To disable the terminal refresh when exiting
+code
+ less -X

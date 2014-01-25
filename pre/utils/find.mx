@@ -1,0 +1,71 @@
+find
+
+example
+ To find files by case-insensitive extension (ex: .jpg, .JPG, .jpG):
+code
+ find . -iname "*.jpg"
+
+example
+ To find directories:
+code
+ find . -type d
+
+example
+ To find files:
+code
+ find . -type f
+
+example
+ To find files by octal permission:
+code
+ find . -type f -perm 777
+
+example
+ To find files with setuid bit set:
+code
+ find . -xdev \( -perm -4000 \) -type f -print0 | xargs -0 ls -l
+
+example
+ To find files with extension '.txt' and remove them:
+code
+ find ./path/ -name '*.txt' -exec rm '{}' \;
+
+example
+ To find files with extension '.txt' and look for a string into them:
+code
+ find ./path/ -name '*.txt' | xargs grep 'string'
+
+example
+ To find files with size bigger than 5 Mb and sort them by size:
+code
+ find ./ -size +5M -type f -print0 | xargs -0 ls -Ssh
+
+example
+ To find files bigger thank 2 MB and list them:
+code
+ find / -type f -size +20000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+
+example
+ To find files modified more than 7 days ago and list file information
+code
+ find . -type f -mtime +7d -ls
+
+example
+ To find symlinks owned by a user and list file information
+code
+ find . -type l --user=username -ls
+
+example
+ To search for and delete empty directories
+code
+ find . -type d -empty -exec rmdir {} \;
+
+example
+ To search for directories named build at a max depth of 2 directories
+code
+ find . -maxdepth 2 -name build -type d
+
+example
+ To search all files who are not in .git directory
+code
+ find . ! -iwholename '*.git*' -type f

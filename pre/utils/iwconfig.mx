@@ -1,0 +1,16 @@
+iwconfig
+
+example
+ Display wireless settings of the first wireless adapter
+code
+ iwconfig wlan0
+
+example
+ Take down / up the wireless adapter
+code
+ iwconfig wlan0 txpower {on|auto|off}
+
+example
+ Change the mode of the wireless adapter
+code
+ iwconfig wlan0 mode {managed|ad-hoc|monitor}

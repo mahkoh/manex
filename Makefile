@@ -1,17 +1,15 @@
 include config.mk
 
-CFLAGS = -O3
+CFLAGS = -O3 -std=c99 -D_GNU_SOURCE
 CFLAGS += -DDOCDIR=\"$(DOCDIR)\"
 
-DOCS = $(shell find pre/ -type f | sed 's/\.mx//' | sed 's/^pre/docs/')
+DOCS = $(shell find pre/ -type f -iname '*.mx' | sed 's/\.mx$$//' | sed 's/^pre/docs/')
 BINS = gen manex
 
-all: manex $(DOCS)
+all: $(BINS) $(DOCS)
 
 $(DOCS): docs/%: pre/%.mx gen
-	@echo GEN $*
-	@mkdir -p $(@D)
-	@./gen $< > $@
+	@./gen
 
 $(BINS): %: %.c config.mk
 	$(CC) $(CFLAGS) -o $@ $<
@@ -22,6 +20,6 @@ install: all
 	cp -r docs/* $(DOCDIR)
 
 clean:
-	rm -rf docs gen manex
+	rm -rf docs $(BINS)
 
 .phony: all clean install

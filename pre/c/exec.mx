@@ -4,7 +4,6 @@ example
  Replace current process with `ls -l -h`
 code
  #include <unistd.h>
- ...
  execlp("ls", "ls", "-l", "-h", (char *)NULL);
 
 example

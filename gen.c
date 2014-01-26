@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <ftw.h>
 
 #define CMD_EXAMPLE "example\n"
 #define CMD_TEXT    "text\n"
@@ -14,64 +17,116 @@ enum section {
 static void die(const char *fmt, ...)
 {
 	va_list ap;
-
 	va_start(ap, fmt);
 	vfprintf(stderr, fmt, ap);
 	va_end(ap);
 	exit(1);
 }
 
-static inline void xwrite(const char *str)
+static void xwrite(FILE *out, const char *str)
 {
-	fwrite(str, strlen(str), 1, stdout);
+	fwrite(str, strlen(str), 1, out);
 }
 
-int main(int argc, char **argv)
+static void generate(FILE *in, FILE *out)
 {
-	FILE *input;
-
-	switch (argc) {
-	case 1:
-		input = stdin;
-		break;
-	case 2:
-		input = fopen(argv[1], "r");
-		if (!input)
-			die("can't open %s\n", argv[1]);
-		break;
-	default:
-		die("usage: %s [file]\n", argv[0]);
-		return 1;
-	}
-
 	enum section sec = TEXT;
 	char *line = NULL;
 	size_t n;
 	int len;
-	if (getline(&line, &n, input) == -1)
-		die("%s is empty\n", argv[1]);
+	if (getline(&line, &n, in) == -1)
+		die("source is empty\n");
 	line[strlen(line)-1] = 0;
-	printf(".TH \"%s\"\n", line);
-	while ((len = getline(&line, &n, input)) != -1) {
+	fprintf(out, ".TH \"%s\"\n", line);
+	while ((len = getline(&line, &n, in)) != -1) {
 		if (*line == '\n' || *line == ' ') {
-			fwrite(line+1, len-1, 1, stdout);
+			fwrite(line+1, len-1, 1, out);
 			continue;
 		}
 
 		if (sec == CODE)
-			xwrite(".fi\n.RE\n");
+			xwrite(out, ".fi\n.RE\n");
 		if (strcmp(line, CMD_EXAMPLE) == 0) {
-			xwrite(".SH EXAMPLE\n");
+			xwrite(out, ".SH EXAMPLE\n");
 			sec = TEXT;
 		} else if (strcmp(line, CMD_TEXT) == 0) {
 			sec = TEXT;
 		} else if (strcmp(line, CMD_CODE) == 0) {
-			xwrite(".RS\n.nf\n");
+			xwrite(out, ".RS\n.nf\n");
 			sec = CODE;
 		} else {
 			die("unknown command: %s", line);
 		}
 	}
 	if (sec == CODE)
-		xwrite(".fi\n.RE\n");
+		xwrite(out, ".fi\n.RE\n");
+}
+
+static void mkdirp(char *doc)
+{
+	for (char *cur = doc; *cur; cur++) {
+		if (*cur == '/') {
+			*cur = 0;
+			mkdir(doc, S_IRWXU | S_IXGRP | S_IXOTH);
+			*cur = '/';
+		}
+	}
+}
+
+static int is_newer(const char *doc, time_t pre)
+{
+	struct stat doc_stat;
+	if (stat(doc, &doc_stat) == 0) {
+		if (pre <= doc_stat.st_mtime)
+			return 0;
+		else
+			return 1;
+	} else if (errno != ENOENT) {
+		die("Can't access %s (%s)\n", doc, strerror(errno));
+	}
+	return 1;
+}
+
+static int get_doc(const char *path, char **doc)
+{
+	char *slash = strchr(path, '/');
+	if (slash == NULL)
+		return 0;
+	char *ext = strrchr(slash, '.');
+	if (ext == NULL || ext[1] != 'm' || ext[2] != 'x')
+		return 0;
+	char *dest = malloc(sizeof("docs")+ext-slash);
+	char *cur = mempcpy(dest, "docs", strlen("docs"));
+	cur = mempcpy(cur, slash, ext-slash);
+	*cur = 0;
+	*doc = dest;
+	return cur-dest;
+}
+
+static int walker(const char *path, const struct stat *mx_stat, int type)
+{
+	char *doc = NULL;
+	int doc_len;
+
+	if ( type != FTW_F
+	  || (doc_len = get_doc(path, &doc)) == 0
+	  || !is_newer(doc, mx_stat->st_mtime))
+		goto OUT;
+	xwrite(stdout, "GEN ");
+	fwrite(doc, doc_len, 1, stdout);
+	xwrite(stdout, "\n");
+	mkdirp(doc);
+	FILE *in = fopen(path, "r");
+	FILE *out = fopen(doc, "w");
+	generate(in, out);
+	fclose(out);
+	fclose(in);
+OUT:
+	free(doc);
+	return 0;
+}
+
+int main(int argc, char **argv)
+{
+	ftw("pre", walker, 16);
 }

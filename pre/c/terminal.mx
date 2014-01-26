@@ -4,6 +4,7 @@ example
  get terminal width
 code
  #include <sys/ioctl.h>
+ ...
  struct winsize w;
  ioctl(1, TIOCGWINSZ, &w);
  int width = w.ws_col;

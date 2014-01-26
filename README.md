@@ -1,7 +1,7 @@
 manex
 =====
 
-manex is a harmless tool to create and view example manpages.
+manex is a harmless tool to create and view example man-pages.
 
 Usage
 -----
@@ -71,7 +71,7 @@ Highlighting
 
 Per-language highlighting is possible if you use vim as your man-pager but hasn't been implemented yet.
 
-Contibuting
+Contributing
 -----------
 
 Pull requests are welcome.

@@ -3,39 +3,53 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <unistd.h>
 #include <ftw.h>
 
-#define CMD_EXAMPLE "example\n"
-#define CMD_TEXT    "text\n"
-#define CMD_CODE    "code\n"
+time_t bin_time;
 
 enum section {
+	ERROR,
+	EXAMPLE,
 	TEXT,
 	CODE,
 };
-
-static void die(const char *fmt, ...)
-{
-	va_list ap;
-	va_start(ap, fmt);
-	vfprintf(stderr, fmt, ap);
-	va_end(ap);
-	exit(1);
-}
 
 static void xwrite(FILE *out, const char *str)
 {
 	fwrite(str, strlen(str), 1, out);
 }
 
-static void generate(FILE *in, FILE *out)
+static int xstrcmp(const char *a, const char *b)
 {
+	return !strncmp(a, b, strlen(b));
+}
+
+static enum section get_section(const char *line)
+{
+	if (xstrcmp(line, "example"))
+		return EXAMPLE;
+	if (xstrcmp(line, "text"))
+		return TEXT;
+	if (xstrcmp(line, "code"))
+		return CODE;
+	return ERROR;
+}
+
+static void generate(const char *in_path, const char *out_path)
+{
+	const char *error = NULL;
+	FILE *in = fopen(in_path, "r");
+	FILE *out = fopen(out_path, "w");
+
 	enum section sec = TEXT;
 	char *line = NULL;
 	size_t n;
 	int len;
-	if (getline(&line, &n, in) == -1)
-		die("source is empty\n");
+	if (getline(&line, &n, in) == -1) {
+		error = "source is empty\n";
+		goto ERROR;
+	}
 	line[strlen(line)-1] = 0;
 	fprintf(out, ".TH \"%s\"\n", line);
 	while ((len = getline(&line, &n, in)) != -1) {
@@ -46,20 +60,31 @@ static void generate(FILE *in, FILE *out)
 
 		if (sec == CODE)
 			xwrite(out, ".fi\n.RE\n");
-		if (strcmp(line, CMD_EXAMPLE) == 0) {
+		switch ((sec = get_section(line))) {
+		case EXAMPLE:
 			xwrite(out, ".SH EXAMPLE\n");
-			sec = TEXT;
-		} else if (strcmp(line, CMD_TEXT) == 0) {
-			sec = TEXT;
-		} else if (strcmp(line, CMD_CODE) == 0) {
+			break;
+		case TEXT:
+			break;
+		case CODE:
 			xwrite(out, ".RS\n.nf\n");
-			sec = CODE;
-		} else {
-			die("unknown command: %s", line);
+			break;
+		default:
+			error = "unknown command: %s";
+			goto ERROR;
 		}
 	}
 	if (sec == CODE)
 		xwrite(out, ".fi\n.RE\n");
+
+ERROR:
+	fclose(in);
+	fclose(out);
+	if (error) {
+		fprintf(stderr, error, line);
+		unlink(out_path);
+		exit(1);
+	}
 }
 
 static void mkdirp(char *doc)
@@ -77,56 +102,48 @@ static int is_newer(const char *doc, time_t pre)
 {
 	struct stat doc_stat;
 	if (stat(doc, &doc_stat) == 0) {
-		if (pre <= doc_stat.st_mtime)
-			return 0;
-		else
-			return 1;
+		return bin_time > doc_stat.st_mtime || pre > doc_stat.st_mtime;
 	} else if (errno != ENOENT) {
-		die("Can't access %s (%s)\n", doc, strerror(errno));
+		fprintf(stderr, "Can't access %s (%s)\n", doc, strerror(errno));
+		exit(1);
 	}
 	return 1;
 }
 
-static int get_doc(const char *path, char **doc)
+static char *get_doc(const char *path)
 {
 	char *slash = strchr(path, '/');
 	if (slash == NULL)
-		return 0;
+		return NULL;
 	char *ext = strrchr(slash, '.');
 	if (ext == NULL || ext[1] != 'm' || ext[2] != 'x')
-		return 0;
+		return NULL;
 	char *dest = malloc(sizeof("docs")+ext-slash);
 	char *cur = mempcpy(dest, "docs", strlen("docs"));
 	cur = mempcpy(cur, slash, ext-slash);
 	*cur = 0;
-	*doc = dest;
-	return cur-dest;
+	return dest;
 }
 
 static int walker(const char *path, const struct stat *mx_stat, int type)
 {
 	char *doc = NULL;
-	int doc_len;
 
-	if ( type != FTW_F
-	  || (doc_len = get_doc(path, &doc)) == 0
-	  || !is_newer(doc, mx_stat->st_mtime))
-		goto OUT;
-	xwrite(stdout, "GEN ");
-	fwrite(doc, doc_len, 1, stdout);
-	xwrite(stdout, "\n");
-	mkdirp(doc);
-	FILE *in = fopen(path, "r");
-	FILE *out = fopen(doc, "w");
-	generate(in, out);
-	fclose(out);
-	fclose(in);
-OUT:
+	if ( type == FTW_F
+	  && (doc = get_doc(path)) != NULL
+	  && is_newer(doc, mx_stat->st_mtime)) {
+		printf("GEN %s\n", doc);
+		mkdirp(doc);
+		generate(path, doc);
+	}
 	free(doc);
 	return 0;
 }
 
 int main(int argc, char **argv)
 {
+	struct stat bin_stat = { 0 };
+	stat(argv[0], &bin_stat);
+	bin_time = bin_stat.st_mtime;
 	ftw("pre", walker, 16);
 }

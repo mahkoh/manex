@@ -1,0 +1,11 @@
+dbus
+
+example
+ List available dbus services
+code
+ dbus-send --session           \\
+   --dest=org.freedesktop.DBus \\
+   --type=method_call          \\
+   --print-reply               \\
+   /org/freedesktop/DBus       \\
+   org.freedesktop.DBus.ListNames
